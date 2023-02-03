@@ -336,14 +336,10 @@ prListRep <- function(x, length.out) {
 #'
 #' @keywords internal
 prFpXrange <- function(upper, lower, clip, zero, xticks, xlog) {
- if(xlog){
-   top <- min(max(upper, na.rm = TRUE), log(clip[2]))
-   bottom <- max(min(lower, na.rm = TRUE), log(clip[1]))
-   }
-  else{
+
   top <- min(max(upper, na.rm = TRUE), clip[2])
   bottom <- max(min(lower, na.rm = TRUE), clip[1])
-    }
+
 
   # Although perhaps not entirely intuitive
   # I've decided that the function should
@@ -351,32 +347,7 @@ prFpXrange <- function(upper, lower, clip, zero, xticks, xlog) {
   # endpoints unless there are pre-specified
   # ticks indicating that the end-points aren't
   # included in the x-axis
-  if(xlog){if (is.null(xticks)) {
-     ret <- c(
-       min(
-         zero,
-         bottom,
-         na.rm = TRUE
-       ),
-       max(
-         zero,
-         top,
-         na.rm = TRUE
-       )
-     )
-   } else {
-     ret <- c(
-       min(
-         c(zero, bottom, log(xticks)),
-         na.rm = TRUE
-       ),
-       max(
-         c(zero, top, log(xticks)),
-         na.rm = TRUE
-       )
-     )
-   }}
-  else{
+
    if (is.null(xticks)) {
      ret <- c(
        min(
@@ -402,7 +373,6 @@ prFpXrange <- function(upper, lower, clip, zero, xticks, xlog) {
        )
      )
    }
- }
   return(ret)
 }
 
