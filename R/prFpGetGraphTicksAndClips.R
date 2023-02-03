@@ -55,7 +55,7 @@ prFpGetGraphTicksAndClips <- function(xticks,
         x_range[which.max(x_range)] <- log(max(ticks))
       }
     } else {
-      ticks <- exp(xticks)
+      ticks <- xticks
     }
 
     axis_vp <- viewport(layout.pos.col = graph.pos * 2 - 1,
@@ -73,7 +73,6 @@ prFpGetGraphTicksAndClips <- function(xticks,
       ticklabels <- ifelse(ticks < 1 | abs(floor(ticks * 10) - ticks * 10) > 0,
                            format(ticks, digits = 2, nsmall = 2),
                            format(ticks, digits = 1, nsmall = 1))
-      ticks <- log(ticks)
     } else {
       ticks <- NULL
       ticklabels <- FALSE
